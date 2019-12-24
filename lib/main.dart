@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/views/home/home.dart';
+import 'package:hello_flutter/views/home/login.dart';
 // 1、创建main函数
 // 2、显示文字hello world 1)
 // MaterialApp 设计风格Google
+// dart 实例化new 关键字可以省略
 
 main() => runApp(MyApp());
 
@@ -10,33 +13,60 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      title: "我不显示",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("时间"),
-        ),
-        body: ContentText(),
-      )
+      title: "乐随学",
+      theme: ThemeData( // 改变主题色
+        primaryColor: Colors.green,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent
+      ),
+      home: MyStackPage()
     );
   }
-  
 }
 
-// 代码重构dart解决层级复杂weidget 树 StatelessWidget 无状态组件
+class MyStackPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyStackPageState();
+  }
+}
 
-class ContentText extends StatelessWidget {
+class MyStackPageState extends State<MyStackPage> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Center(
-      child: Text(
-        'hello',
-        textDirection: TextDirection.ltr,
-        style: TextStyle(
-          fontSize: 20,
-          color: Colors.green
-        ),
-        ),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        unselectedFontSize: 14,
+        iconSize: 24,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text("首页"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            title: Text("分类")
+          )
+        ],
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+          });
+        },
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: <Widget>[
+          Login(),
+          Home(),
+        ],
+      ),
     );
   }
 }
