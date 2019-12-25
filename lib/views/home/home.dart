@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+  final title;
+  Home(this.title);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MyStackPage();
+    return MyStackPage(this.title);
   }
 }
 
 class MyStackPage extends StatefulWidget {
+  String title;
+
+  MyStackPage(this.title);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyStackPageState();
+    return MyStackPageState(this.title);
   }
 }
 
 class MyStackPageState extends State<MyStackPage> {
+  String title;
+
+  MyStackPageState(this.title);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("乐随学", textAlign: TextAlign.center,),
+        title: Text(this.title, textAlign: TextAlign.center,),
       ),
       body: MyWidget(),
     );
@@ -35,7 +45,7 @@ class MyWidget extends StatelessWidget {
     // TODO: implement build
     return Center(
       child: Container(
-        child: Text("Container", textAlign: TextAlign.center,),
+        child: Text('', textAlign: TextAlign.center,),
         width: 200,
         height: 200,
         decoration: BoxDecoration(

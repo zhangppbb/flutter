@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/views/home/home.dart';
 import 'package:hello_flutter/views/home/login.dart';
-// 1、创建main函数
-// 2、显示文字hello world 1)
-// MaterialApp 设计风格Google
-// dart 实例化new 关键字可以省略
+// 乐随学（静态页面）
+// 1）页面盘点（登录，首页，答题，我的）
+// 2）技术难点
+    // 1） 路由跳转，权限管理
+// 参考文章
+// 1）路由：https://blog.csdn.net/qq_32760901/article/details/92782987
+      // pushReplacementNamed（重定向） || pushNamed（正常跳转） 参数
+      // pushReplacement （重定向） || push（正常跳转） 可带参数
 
 main() => runApp(MyApp());
 
@@ -15,10 +19,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "乐随学",
       theme: ThemeData( // 改变主题色
-        primaryColor: Colors.green,
+        primaryColor: Color(0xff00a29a),
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent
       ),
+      routes: <String, WidgetBuilder> {
+        'login': (BuildContext context) => Login(),
+        'home' : (BuildContext context) => Home(''),
+      },
       home: MyStackPage()
     );
   }
@@ -64,7 +72,7 @@ class MyStackPageState extends State<MyStackPage> {
         index: _currentIndex,
         children: <Widget>[
           Login(),
-          Home(),
+          Home(''),
         ],
       ),
     );
