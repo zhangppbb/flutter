@@ -72,7 +72,7 @@ class MyWidget extends StatelessWidget {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      print("学习组切换");
+                      print("学习组织切换");
                     },
                     child: Container(
                       width: 16,
