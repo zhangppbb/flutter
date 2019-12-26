@@ -51,6 +51,7 @@ class MyWidget extends StatelessWidget {
               hintText: "请输入手机号",
               focusColor: Color(0xff00a29a),
               hoverColor: Color(0xff00a29a),
+              fillColor: Colors.white
             ),
           ),
         ),
@@ -60,9 +61,10 @@ class MyWidget extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               prefixIcon: Icon(Icons.code),
-              hintText: "验证码",
+              hintText: "请输入验证码",
               focusColor: Color(0xff00a29a),
               hoverColor: Color(0xff00a29a),
+              fillColor: Colors.white
             ),
           ),
         ),
@@ -78,14 +80,16 @@ class MyWidget extends StatelessWidget {
             ),),
             color: Color(0xff00a29a),
             onPressed: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                 PageRouteBuilder(
-                pageBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                  return Home("test");
-                }));
+                  pageBuilder: (
+                    BuildContext context,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation) {
+                    return Home("乐随学");
+                  }
+                )
+              );
             },
           ),
         )

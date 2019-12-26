@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/views/home/home.dart';
-import 'package:hello_flutter/views/home/login.dart';
+import 'package:hello_flutter/views/login/login.dart';
 // 乐随学（静态页面）
 // 1）页面盘点（登录，首页，答题，我的）
 // 2）技术难点
     // 1） 路由跳转，权限管理
 // 参考文章
 // 1）路由：https://blog.csdn.net/qq_32760901/article/details/92782987
-      // pushReplacementNamed（重定向） || pushNamed（正常跳转） 参数
-      // pushReplacement （重定向） || push（正常跳转） 可带参数
+      // pushReplacementNamed（重定向）（路由路径） || pushNamed（正常跳转） 无参数
+      // pushReplacement（返回组件实例） （重定向） || push（正常跳转） 可带参数
 
 main() => runApp(MyApp());
 
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "乐随学",
       theme: ThemeData( // 改变主题色
         primaryColor: Color(0xff00a29a),
@@ -71,8 +72,8 @@ class MyStackPageState extends State<MyStackPage> {
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
-          Login(),
-          Home(''),
+          // Login(),
+          Home('乐随学'),
         ],
       ),
     );
